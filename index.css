@@ -1,0 +1,987 @@
+/* ============================================
+   1. RESET & BASE STYLES
+   ============================================ */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    position: relative;
+    background: #1a0000;
+    background-image: url('background1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #8B0000;
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============================================
+   2. CONTAINER CHÍNH
+   ============================================ */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    transition: opacity 0.5s ease;
+    text-align: center;
+}
+
+/* ============================================
+   3. TIÊU ĐỀ & VĂN BẢN
+   ============================================ */
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+    color: #FFD700;
+    line-height: 1.2;
+    text-shadow: 3px 3px 0 #d63031, 0 0 30px rgba(255, 215, 0, 0.7);
+    margin-bottom: 30px;
+    text-align: center;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 3px 3px 0 #d63031, 0 0 30px rgba(255, 215, 0, 0.7);
+    }
+    to {
+        text-shadow: 3px 3px 0 #d63031, 0 0 40px rgba(255, 215, 0, 0.9), 0 0 60px rgba(255, 215, 0, 0.5);
+    }
+}
+
+.sub-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: #FFD700;
+    margin-bottom: 60px;
+    text-shadow: 2px 2px 0 #d63031;
+    text-align: center;
+    animation: fadeInUp 1s ease;
+}
+
+/* ============================================
+   4. ĐẾM NGƯỢC
+   ============================================ */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.time-box {
+    background: linear-gradient(145deg, #e63946, #8b0000);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #FFD700;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.time-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg);
+    animation: shine 3s infinite linear;
+}
+
+.time-box:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes shine {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+.number {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.label {
+    font-size: 1.1rem;
+    color: #FFD700;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
+    margin-top: 5px;
+}
+
+/* ============================================
+   5. BAO LÌ XÌ
+   ============================================ */
+.lixi-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lixi {
+    width: 180px;
+    height: 280px;
+    background: linear-gradient(145deg, #d42020, #8b0000);
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5),
+                inset 0 5px 20px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    border: 3px solid #ffd700;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+.lixi::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 215, 0, 0.2) 0%,
+        transparent 100%
+    );
+    z-index: 1;
+}
+
+.lixi:hover {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7),
+                0 0 40px rgba(255, 215, 0, 0.6);
+}
+
+.lixi-top {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, #b31a1a, #8b0000);
+    border-radius: 12px 12px 50% 50%;
+    border-bottom: 4px solid #ffd700;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.lixi-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(145deg, #ffd700, #ffaa00);
+    border-radius: 50%;
+    border: 5px solid #fff;
+    color: #d42020;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+                inset 0 -3px 8px rgba(0,0,0,0.2);
+    z-index: 3;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.lixi:hover .lixi-button {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4),
+                inset 0 -3px 8px rgba(0,0,0,0.2);
+}
+
+/* Text hint */
+.hint {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: #FFD700;
+    margin-top: 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    animation: pulse 2s infinite;
+    padding: 10px 20px;
+    background: rgba(139, 0, 0, 0.5);
+    border-radius: 20px;
+    border: 2px solid #FFD700;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* ============================================
+   6. THIỆP CHÚC MỪNG
+   ============================================ */
+.ready-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+.question-box {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 50px 40px;
+    max-width: 700px;
+    width: 95%;
+    border: 3px solid rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 60px rgba(255, 215, 0, 0.3),
+                inset 0 0 30px rgba(255, 215, 0, 0.1);
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.question-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 215, 0, 0.1) 0%,
+        transparent 70%
+    );
+    animation: rotate 20s linear infinite;
+}
+
+.question {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: #FFD700;
+    margin-bottom: 40px;
+    line-height: 1.4;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.question strong {
+    color: #ff6b6b;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+}
+
+.ready-btn {
+    background: linear-gradient(145deg, #FFD700 0%, #FF8C00 100%);
+    color: #330000;
+    border: none;
+    padding: 20px 50px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    border-radius: 60px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(255, 69, 0, 0.4),
+                inset 0 2px 10px rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border: 3px solid #ffaa00;
+}
+
+.ready-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.ready-btn:hover::before {
+    left: 100%;
+}
+
+.ready-btn:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 69, 0, 0.6),
+                0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+.ready-btn:active {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-icon {
+    position: relative;
+    z-index: 1;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* ============================================
+   7. HIỆU ỨNG TIỀN BẮN RA
+   ============================================ */
+.money-particle {
+    position: fixed;
+    font-size: 30px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: moneyExplode 2s ease-out forwards;
+    user-select: none;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes moneyExplode {
+    0% { 
+        transform: translate(0, 0) scale(1) rotate(0deg); 
+        opacity: 1;
+        filter: brightness(1) drop-shadow(0 0 10px gold);
+    }
+    50% {
+        transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(180deg);
+        opacity: 0.8;
+        filter: brightness(1.5) drop-shadow(0 0 20px gold);
+    }
+    100% { 
+        transform: translate(var(--tx), var(--ty)) scale(0) rotate(720deg); 
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   8. AUDIO OVERLAY
+   ============================================ */
+#audioOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 9998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+    backdrop-filter: blur(10px);
+}
+
+#audioOverlay > div {
+    background: linear-gradient(145deg, rgba(255,215,0,0.95), rgba(255,140,0,0.9));
+    padding: 40px;
+    border-radius: 25px;
+    max-width: 500px;
+    width: 90%;
+    border: 5px solid #8B0000;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5),
+                0 0 40px rgba(255,215,0,0.3);
+    animation: pulseOverlay 2s infinite;
+}
+
+#audioOverlay h2 {
+    color: #8B0000;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    font-family: 'Dancing Script', cursive;
+    text-shadow: 2px 2px 0 rgba(255,255,255,0.5);
+}
+
+#audioOverlay p {
+    color: #8B0000;
+    margin-bottom: 30px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+#audioOverlay button {
+    background: linear-gradient(145deg, #8B0000, #5a0000);
+    color: #FFD700;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 3px solid #FFD700;
+    box-shadow: 0 10px 25px rgba(139, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 auto;
+    min-width: 250px;
+}
+
+#audioOverlay button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(139, 0, 0, 0.7),
+                0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+#audioOverlay button:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+@keyframes pulseOverlay {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5),
+                    0 0 40px rgba(255,215,0,0.3);
+    }
+    50% { 
+        transform: scale(1.02);
+        box-shadow: 0 25px 60px rgba(0,0,0,0.6),
+                    0 0 50px rgba(255,215,0,0.5);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ============================================
+   9. AUDIO STATUS INDICATOR
+   ============================================ */
+.audio-status {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 215, 0, 0.95);
+    color: #8B0000;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    border: 2px solid #FFD700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.audio-status.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.audio-status.success {
+    background: rgba(76, 175, 80, 0.95);
+    color: white;
+    border-color: #4CAF50;
+}
+
+.audio-status.error {
+    background: rgba(244, 67, 54, 0.95);
+    color: white;
+    border-color: #F44336;
+}
+
+/* ============================================
+   10. ANIMATIONS HỖ TRỢ
+   ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-20px); 
+    }
+}
+
+@keyframes zoomIn {
+    from { 
+        opacity: 0; 
+        transform: scale(0.5); 
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   11. RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 992px) {
+    .main-title {
+        font-size: 4rem;
+    }
+    
+    .sub-title {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+    
+    .time-box {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .number {
+        font-size: 3.5rem;
+    }
+    
+    .question {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3.2rem;
+    }
+    
+    .sub-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .countdown-container {
+        gap: 20px;
+    }
+    
+    .time-box {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .number {
+        font-size: 3rem;
+    }
+    
+    .label {
+        font-size: 1rem;
+    }
+    
+    .lixi {
+        width: 150px;
+        height: 230px;
+    }
+    
+    .lixi-button {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+    }
+    
+    .question {
+        font-size: 2rem;
+    }
+    
+    .ready-btn {
+        padding: 15px 30px;
+        font-size: 1.4rem;
+    }
+    
+    .hint {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+    
+    #audioOverlay h2 {
+        font-size: 1.8rem;
+    }
+    
+    #audioOverlay p {
+        font-size: 1.1rem;
+    }
+    
+    #audioOverlay button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-title {
+        font-size: 2.5rem;
+        line-height: 1.1;
+    }
+    
+    .sub-title {
+        font-size: 1.5rem;
+    }
+    
+    .countdown-container {
+        gap: 15px;
+    }
+    
+    .time-box {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .number {
+        font-size: 2.2rem;
+    }
+    
+    .label {
+        font-size: 0.9rem;
+    }
+    
+    .lixi {
+        width: 130px;
+        height: 200px;
+    }
+    
+    .lixi-top {
+        height: 60px;
+    }
+    
+    .lixi-button {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+        border-width: 4px;
+    }
+    
+    .question-box {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .question {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+    }
+    
+    .ready-btn {
+        padding: 12px 25px;
+        font-size: 1.2rem;
+        border-radius: 50px;
+    }
+    
+    .audio-status {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    #audioOverlay {
+        padding: 15px;
+    }
+    
+    #audioOverlay > div {
+        padding: 30px 20px;
+    }
+    
+    #audioOverlay h2 {
+        font-size: 1.6rem;
+    }
+    
+    #audioOverlay p {
+        font-size: 1rem;
+    }
+    
+    #audioOverlay button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        min-width: 180px;
+    }
+}
+
+/* Portrait mode on mobile */
+@media (max-width: 480px) and (orientation: portrait) {
+    .container {
+        padding: 20px 10px;
+    }
+    
+    .countdown-container {
+        gap: 12px;
+    }
+    
+    .time-box {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .number {
+        font-size: 2rem;
+    }
+    
+    .label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .container {
+        padding: 20px;
+        justify-content: flex-start;
+        min-height: auto;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .sub-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .countdown-container {
+        margin-bottom: 20px;
+    }
+    
+    .time-box {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .number {
+        font-size: 1.8rem;
+    }
+    
+    .label {
+        font-size: 0.7rem;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .question-box,
+    .time-box,
+    .lixi,
+    .ready-btn,
+    #audioOverlay > div {
+        border-width: 2px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .audio-status,
+    #audioOverlay,
+    .money-particle {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .main-title,
+    .sub-title,
+    .question {
+        color: black !important;
+        text-shadow: none !important;
+    }
+    
+    .time-box {
+        border: 2px solid black !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .question-box {
+        background: rgba(20, 20, 20, 0.9);
+    }
+}
+
+/* Loading state */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1a0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 80px;
+    height: 80px;
+    border: 8px solid rgba(255, 215, 0, 0.3);
+    border-top-color: #FFD700;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(139, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #FFD700, #FF8C00);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #FF8C00, #FFD700);
+}
+
+/* Selection color */
+::selection {
+    background: rgba(255, 215, 0, 0.5);
+    color: #8B0000;
+}
+
+::-moz-selection {
+    background: rgba(255, 215, 0, 0.5);
+    color: #8B0000;
+}
+
+/* Focus styles for accessibility */
+:focus {
+    outline: 3px solid #FFD700;
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, .lixi, .time-box, .ready-btn {
+    transition: all 0.3s ease;
+}
